@@ -8,11 +8,11 @@ export function persistReport(name: string, report: string) {
 const BUCKET_NAME = 'entain-competitor-analysis';
 
 export async function storeInS3(report: string, name: string) {
-  const client = new S3Client({region: 'eu-central-1'});
+  const client = new S3Client({region: 'us-east-1'});
   const cacheControl = 'public, max-age=0, must-revalidate';
   const params = {
     Bucket: BUCKET_NAME,
-    Key: name,
+    Key: name + '.json',
     Body: report,
     CacheControl: cacheControl,
     ContentType: 'application/json'
