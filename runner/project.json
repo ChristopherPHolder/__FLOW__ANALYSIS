@@ -1,0 +1,56 @@
+{
+  "name": "runner",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "runner/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/runner",
+        "format": ["esm"],
+        "bundle": true,
+        "main": "runner/src/main.ts",
+        "tsConfig": "runner/tsconfig.app.json",
+        "assets": ["runner/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "runner:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "runner:build:development"
+        },
+        "production": {
+          "buildTarget": "runner:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

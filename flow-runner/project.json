@@ -1,0 +1,19 @@
+{
+  "name": "flow-runner",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "flow-runner/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/flow-runner",
+        "main": "flow-runner/src/index.ts",
+        "tsConfig": "flow-runner/tsconfig.lib.json",
+        "assets": ["flow-runner/*.md"]
+      }
+    }
+  },
+  "tags": []
+}
